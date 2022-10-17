@@ -4,9 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample page</title>
+    <title>Nymi test page</title>
+    <script>
+        function testAuthorization(){
+            console.log('Hello there '+window.location.href);
+            const currentLocation = window.location.href;
+            if(checkBrowser()){
+            window.location.href = "matsya://?bandId=abcdef&userId=98373&sourceUrl="+currentLocation;
+            }
+            else{
+                window.location.href = "https://www.google.com";
+            }
+            
+        }
+
+        function testAuthWithFeedback(){
+
+        }
+
+        function checkBrowser(){
+            var isMobile = false;
+            if(navigator.userAgentData){
+             isMobile = navigator.userAgentData.mobile;
+            } else {
+                const userAgent = navigator.userAgent;
+                const toMatch = [
+        /Android/i,
+        /webOS/i,
+        /iPhone/i,
+        /iPad/i,
+        /iPod/i,
+        /BlackBerry/i,
+        /Windows Phone/i
+    ];
+    isMobile = toMatch.some((toMatchItem) => {
+        return navigator.userAgent.match(toMatchItem);
+    });
+            }
+            console.log("Is mobile "+ isMobile);
+            return isMobile;
+        }
+        
+    </script>
 </head>
 <body>
+    <h2>Hello there</h2>
+    <div>
+        <p> Click on the buttons below to test the app interaction</p>
+
+        <button onclick="testAuthorization()"> Authorize</button>
+        <button onclick="testAuthWithFeedback()"> Authorize with feedback</button>
+    </div>
     
 </body>
 </html>
